@@ -4,6 +4,9 @@ pipeline {
     APP_NAME = 'my-node-api'
     SECRET_KEY = credentials('SECRET_KEY')
     }
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Checkout') {
             steps {
