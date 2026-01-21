@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${APP_NAME} .'
+                sh 'docker build --provenance=false -t ${APP_NAME} .'
             }
         }
         stage('Deploy') {
