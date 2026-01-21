@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh "docker stop ${APP_NAME} || true"
                 sh "docker rm ${APP_NAME} || true"
-                sh "docker run -d --name my-node-api -p 3000:3000 -e SECRET_KEY=${SECRET_KEY} my-node-api"
+                sh "docker run -d --name ${APP_NAME} -p 3000:3000 -e SECRET_KEY=${SECRET_KEY} ${APP_NAME}"
             }
         }
     }
