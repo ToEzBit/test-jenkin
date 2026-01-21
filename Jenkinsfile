@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        APP_NAME = "my-node-api"
+        SECRET_KEY = credentials("SECRET_KEY")
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -8,14 +12,14 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t my-node-api .'
+                sh "docker build -t ${APP_NAME} ."
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker stop my-node-api || true'
-                sh 'docker rm my-node-api || true'
-                sh 'docker run -d --name my-node-api -p 3000:3000 my-node-api'
+                sh "docker stop ${APP_NAME} || true"
+                sh "docker rm ${APP_NAME} || true"
+                sh "docker run -d --name my-node-api -p 3000:3000 -e SECRET_KEY=${SECRET_KEY} my-node-api"
             }
         }
     }
