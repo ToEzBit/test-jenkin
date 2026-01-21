@@ -6,7 +6,7 @@ const app = express();
 
 app.get("/health", (req, res) => {
   res.json({
-    message: "healthy",
+    message: "healthy wa i sas",
   });
 });
 
